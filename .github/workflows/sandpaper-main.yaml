@@ -37,6 +37,13 @@ jobs:
         with:
           pandoc-version: "2.11.4"
 
+      - name: "Check if We Need {renv}"
+        id: renv
+        run: |
+          if [[ -d renv ]]; then
+            echo "::set-output name=exists::true"
+          fi
+
       - name: "Query Sandpaper Dependencies"
         run: |
           install.packages('remotes')
@@ -63,6 +70,7 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
       - name: "Restore {renv} Cache"
+        if: ${{ steps.renv.outputs.exists }}
         uses: actions/cache@v2
         with:
           path: ${{ env.RENV_PATHS_ROOT }}
@@ -81,21 +89,20 @@ jobs:
           pkgs <- package_deps('sandpaper', dependencies = TRUE)
           pkgs$diff[pkgs$package == "tinkr"] <- -1 # force tinkr update for now
           update(pkgs, upgrade = "always")
-          # update to use renv version of sandpaper
-          if (!"renv_carpentries_repos" %in% ls(env = asNamespace("sandpaper")))
-            install_github("carpentries/sandpaper@package-management")
         shell: Rscript {0}
 
       - name: "Fortify Local {renv} Packages"
-        run: sandpaper::manage_deps(path = ".", quiet = FALSE)
+        if: ${{ steps.renv.outputs.exists }}
+        run: sandpaper::manage_deps(path = '${{ github.workspace }}', quiet = FALSE)
         shell: Rscript {0}
 
       - name: "Show Session Information"
-        run: Rscript -e 'sandpaper:::ci_session_info()'
+        run: sandpaper:::ci_session_info()
+        shell: Rscript {0}
 
       - name: "Deploy Site"
         run: |
-          sandpaper:::check_git_user(path = ".", name = "GitHub Actions", email = "actions@github.com")
           reset <- "${{ github.event.inputs.reset }}" == "true"
+          sandpaper::package_cache_trigger(TRUE)
           sandpaper:::ci_deploy(reset = reset)
         shell: Rscript {0}
