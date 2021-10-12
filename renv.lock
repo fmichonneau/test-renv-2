@@ -76,8 +76,14 @@
     "knitr": {
       "Package": "knitr",
       "Version": "1.33",
-      "Source": "Repository",
-      "Repository": "CRAN",
+      "Source": "CRAN",
+      "Repository": "RSPM",
+      "RemoteType": "standard",
+      "RemotePkgRef": "knitr",
+      "RemoteRef": "knitr",
+      "RemoteRepos": "https://packagemanager.rstudio.com/all/__linux__/focal/latest/",
+      "RemotePkgType": "source",
+      "RemoteSha": "1.33",
       "Hash": "0bc1b5da1b0eb07cd4b727e95e9ff0b8"
     },
     "magrittr": {
@@ -124,8 +130,14 @@
     "rmarkdown": {
       "Package": "rmarkdown",
       "Version": "2.10",
-      "Source": "Repository",
-      "Repository": "CRAN",
+      "Source": "CRAN",
+      "Repository": "RSPM",
+      "RemoteType": "standard",
+      "RemotePkgRef": "rmarkdown",
+      "RemoteRef": "rmarkdown",
+      "RemoteRepos": "https://packagemanager.rstudio.com/all/__linux__/focal/latest/",
+      "RemotePkgType": "source",
+      "RemoteSha": "2.10",
       "Hash": "1fb097f233ee98968f8e5d0bcd42df6d"
     },
     "stringi": {
@@ -151,15 +163,27 @@
     "tinytex": {
       "Package": "tinytex",
       "Version": "0.33",
-      "Source": "Repository",
-      "Repository": "CRAN",
+      "Source": "CRAN",
+      "Repository": "RSPM",
+      "RemoteType": "standard",
+      "RemotePkgRef": "tinytex",
+      "RemoteRef": "tinytex",
+      "RemoteRepos": "https://packagemanager.rstudio.com/all/__linux__/focal/latest/",
+      "RemotePkgType": "source",
+      "RemoteSha": "0.33",
       "Hash": "6e0ad90ac5669e35d5456cb61b295acb"
     },
     "xfun": {
       "Package": "xfun",
       "Version": "0.25",
-      "Source": "Repository",
-      "Repository": "CRAN",
+      "Source": "CRAN",
+      "Repository": "RSPM",
+      "RemoteType": "standard",
+      "RemotePkgRef": "xfun",
+      "RemoteRef": "xfun",
+      "RemoteRepos": "https://packagemanager.rstudio.com/all/__linux__/focal/latest/",
+      "RemotePkgType": "source",
+      "RemoteSha": "0.25",
       "Hash": "853d45ffff0a9af1e0af017cd359f75e"
     },
     "yaml": {
